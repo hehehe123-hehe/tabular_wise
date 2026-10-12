@@ -1,0 +1,373 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1700,
+  "model": {
+    "culture": "en-US",
+    "dataSources": [
+      {
+        "type": "structured",
+        "name": "SQL/s-7897\\sqlexpress;Construct-a-Creature",
+        "connectionDetails": {
+          "protocol": "tds",
+          "address": {
+            "server": "s-7897\\sqlexpress",
+            "database": "Construct-a-Creature"
+          },
+          "authentication": null,
+          "query": null
+        },
+        "credential": {
+          "AuthenticationKind": "ServiceAccount",
+          "EncryptConnection": false
+        }
+      }
+    ],
+    "tables": [
+      {
+        "name": "Centre",
+        "isHidden": true,
+        "columns": [
+          {
+            "name": "CentreId",
+            "dataType": "int64",
+            "sourceColumn": "CentreId"
+          },
+          {
+            "name": "CentreName",
+            "dataType": "string",
+            "sourceColumn": "CentreName"
+          },
+          {
+            "name": "TownId",
+            "dataType": "int64",
+            "sourceColumn": "TownId"
+          },
+          {
+            "name": "CentreTypeId",
+            "dataType": "int64",
+            "sourceColumn": "CentreTypeId"
+          },
+          {
+            "name": "PostCode",
+            "dataType": "string",
+            "sourceColumn": "PostCode"
+          },
+          {
+            "name": "SquareMetres",
+            "dataType": "int64",
+            "sourceColumn": "SquareMetres"
+          },
+          {
+            "name": "NumberUnits",
+            "dataType": "int64",
+            "sourceColumn": "NumberUnits"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/s-7897\\sqlexpress;Construct-a-Creature\",",
+                "    dbo_Centre = Source{[Schema=\"dbo\",Item=\"Centre\"]}[Data]",
+                "in",
+                "    dbo_Centre"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Family",
+        "columns": [
+          {
+            "name": "FamilyId",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "FamilyId"
+          },
+          {
+            "name": "FamilyName",
+            "dataType": "string",
+            "sourceColumn": "FamilyName"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/s-7897\\sqlexpress;Construct-a-Creature\",",
+                "    dbo_Family = Source{[Schema=\"dbo\",Item=\"Family\"]}[Data]",
+                "in",
+                "    dbo_Family"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Purchase",
+        "columns": [
+          {
+            "name": "PurchaseId",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "PurchaseId"
+          },
+          {
+            "name": "PurchaseDate",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "PurchaseDate"
+          },
+          {
+            "name": "PurchaseDateTime",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "PurchaseDateTime"
+          },
+          {
+            "name": "ProductId",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "ProductId"
+          },
+          {
+            "name": "CentreId",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "CentreId"
+          },
+          {
+            "name": "Quantity",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "Quantity"
+          },
+          {
+            "name": "Price",
+            "dataType": "double",
+            "isHidden": true,
+            "sourceColumn": "Price"
+          },
+          {
+            "name": "PaymentDate",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "PaymentDate"
+          },
+          {
+            "name": "StaffId",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "StaffId"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/s-7897\\sqlexpress;Construct-a-Creature\",",
+                "    dbo_Purchase = Source{[Schema=\"dbo\",Item=\"Purchase\"]}[Data]",
+                "in",
+                "    dbo_Purchase"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Average of Price",
+            "expression": "AVERAGE([Price])"
+          }
+        ]
+      },
+      {
+        "name": "Product",
+        "isHidden": true,
+        "columns": [
+          {
+            "name": "ProductId",
+            "dataType": "int64",
+            "sourceColumn": "ProductId"
+          },
+          {
+            "name": "ProductName",
+            "dataType": "string",
+            "sourceColumn": "ProductName"
+          },
+          {
+            "name": "Animal",
+            "dataType": "string",
+            "sourceColumn": "Animal"
+          },
+          {
+            "name": "HabitatId",
+            "dataType": "int64",
+            "sourceColumn": "HabitatId"
+          },
+          {
+            "name": "Legs",
+            "dataType": "int64",
+            "sourceColumn": "Legs"
+          },
+          {
+            "name": "FamilyId",
+            "dataType": "int64",
+            "sourceColumn": "FamilyId"
+          },
+          {
+            "name": "WeightGrams",
+            "dataType": "int64",
+            "sourceColumn": "WeightGrams"
+          },
+          {
+            "name": "ProductionCost",
+            "dataType": "double",
+            "sourceColumn": "ProductionCost"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/s-7897\\sqlexpress;Construct-a-Creature\",",
+                "    dbo_Product = Source{[Schema=\"dbo\",Item=\"Product\"]}[Data]",
+                "in",
+                "    dbo_Product"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Region",
+        "columns": [
+          {
+            "name": "RegionId",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "RegionId"
+          },
+          {
+            "name": "RegionName",
+            "dataType": "string",
+            "sourceColumn": "RegionName"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/s-7897\\sqlexpress;Construct-a-Creature\",",
+                "    dbo_Region = Source{[Schema=\"dbo\",Item=\"Region\"]}[Data]",
+                "in",
+                "    dbo_Region"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Town",
+        "isHidden": true,
+        "columns": [
+          {
+            "name": "TownId",
+            "dataType": "int64",
+            "sourceColumn": "TownId"
+          },
+          {
+            "name": "TownName",
+            "dataType": "string",
+            "sourceColumn": "TownName"
+          },
+          {
+            "name": "RegionId",
+            "dataType": "int64",
+            "sourceColumn": "RegionId"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/s-7897\\sqlexpress;Construct-a-Creature\",",
+                "    dbo_Town = Source{[Schema=\"dbo\",Item=\"Town\"]}[Data]",
+                "in",
+                "    dbo_Town"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "496748a2-d757-466a-be0f-7339af398922",
+        "fromTable": "Town",
+        "fromColumn": "RegionId",
+        "toTable": "Region",
+        "toColumn": "RegionId"
+      },
+      {
+        "name": "6e8e4093-f0c2-463c-be93-cdea05f1f09b",
+        "fromTable": "Purchase",
+        "fromColumn": "ProductId",
+        "toTable": "Product",
+        "toColumn": "ProductId"
+      },
+      {
+        "name": "433cb9d7-713c-4faa-99cf-f7afa36ea332",
+        "fromTable": "Centre",
+        "fromColumn": "TownId",
+        "toTable": "Town",
+        "toColumn": "TownId"
+      },
+      {
+        "name": "79118758-4c8c-465f-a630-c6a6fd8a874c",
+        "fromTable": "Purchase",
+        "fromColumn": "CentreId",
+        "toTable": "Centre",
+        "toColumn": "CentreId"
+      },
+      {
+        "name": "1f560210-afc4-42d5-adf9-592e8479ce93",
+        "fromTable": "Product",
+        "fromColumn": "FamilyId",
+        "toTable": "Family",
+        "toColumn": "FamilyId"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "800"
+      }
+    ]
+  },
+  "id": "SemanticModel"
+}
